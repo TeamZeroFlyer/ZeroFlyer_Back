@@ -1,9 +1,6 @@
 package zeroflyer.qrecode.main.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 
@@ -22,14 +19,9 @@ public class Member {
     private String memberId;
 
     @Column(nullable = false)
-    private String memberPassword;
-
-    @Column(nullable = false)
-    private String memberPhone;
-
-    @Column(nullable = false)
     private String memberName;
 
+    @ColumnDefault("0")
     private Long memberPoint;
 
     @ColumnDefault("0")
@@ -40,4 +32,17 @@ public class Member {
     private Grade grade;
 
     private Long memberStoreIdx;
+
+    @Enumerated(EnumType.STRING)
+    private AuthProvider authProvider;
+
+    private String refreshToken;
+
+    @Builder
+    public Member(String memberId, String memberName, AuthProvider authProvider, Grade grade) {
+        this.memberId = memberId;
+        this.memberName = memberName;
+        this.authProvider = authProvider;
+        this.grade = grade;
+    }
 }
