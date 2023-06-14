@@ -31,8 +31,6 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private Grade grade;
 
-    private Long memberStoreIdx;
-
     @Enumerated(EnumType.STRING)
     private AuthProvider authProvider;
 
@@ -45,4 +43,9 @@ public class Member {
         this.authProvider = authProvider;
         this.grade = grade;
     }
+
+    public void setGrade(Grade grade) {
+        this.grade = grade;
+    }
+
 }

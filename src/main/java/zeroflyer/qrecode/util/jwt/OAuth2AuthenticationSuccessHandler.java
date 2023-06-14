@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.util.UriComponentsBuilder;
 import zeroflyer.qrecode.exception.PrivateException;
 import zeroflyer.qrecode.exception.StatusCode;
+import zeroflyer.qrecode.main.domain.Member;
+import zeroflyer.qrecode.main.repository.MemberRepository;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -26,6 +28,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     private final JwtTokenProvider tokenProvider;
     private final CookieAuthorizationRequestRepository authorizationRequestRepository;
     private final Logger log = LoggerFactory.getLogger(this.getClass().getSimpleName());
+    private final MemberRepository memberRepository;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException, IOException {
@@ -53,8 +56,12 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         String accessToken = tokenProvider.createAccessToken(authentication);
         tokenProvider.createRefreshToken(authentication, response);
 
+        Member member = memberRepository.findByMemberId(authentication.getName())
+                .orElseThrow(() -> new PrivateException(StatusCode.NOT_FOUND_MEMBER));
+
         return UriComponentsBuilder.fromUriString(targetUrl)
                 .queryParam("accessToken", accessToken)
+                .queryParam("lastStatus", member.getGrade().toString())
                 .build().toUriString();
     }
 

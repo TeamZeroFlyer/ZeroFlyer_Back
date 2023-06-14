@@ -1,4 +1,4 @@
-package zeroflyer.qrecode.dto.Auth;
+package zeroflyer.qrecode.dto.qr;
 
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class RequestCheckMemberDto {
-    private String accessToken;
+public class QRPtjDto {
+    private String ptjName;
+    private String ptjPhone;
 }

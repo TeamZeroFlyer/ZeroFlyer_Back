@@ -3,9 +3,8 @@ package zeroflyer.qrecode.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import zeroflyer.qrecode.exception.PrivateException;
 import zeroflyer.qrecode.exception.PrivateResponseBody;
 import zeroflyer.qrecode.exception.StatusCode;
 import zeroflyer.qrecode.service.MapService;
@@ -21,8 +20,13 @@ public class MapController {
     }
 
     @GetMapping("/stores")
-    public ResponseEntity<PrivateResponseBody> getStoreInfo() {
+    public ResponseEntity<PrivateResponseBody> getStoreInfo(@RequestParam String lat, @RequestParam String lng) {
 
-        return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK, "test"), HttpStatus.OK);
+        return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK, mapService.getStoreInfo(lat, lng)), HttpStatus.OK);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<PrivateResponseBody> getStoreInfoByKeyword(@RequestParam String keyword) {
+        return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK, mapService.getStoreInfoByKeyword(keyword)), HttpStatus.OK);
     }
 }

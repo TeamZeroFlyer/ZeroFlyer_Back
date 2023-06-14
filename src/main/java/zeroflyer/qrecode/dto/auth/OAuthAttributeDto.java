@@ -1,4 +1,4 @@
-package zeroflyer.qrecode.dto.Auth;
+package zeroflyer.qrecode.dto.auth;
 
 import lombok.Builder;
 import lombok.Getter;

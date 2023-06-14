@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 public enum Grade {
     NONE("ROLE_NONE", "none"),
     USER("ROLE_USER", "user"),
-    OWNER("ROLE_OWNER", "owner");
+    ADVERTISER("ROLE_ADVERTISER", "advertiser");
 
     private final String role;
     private final String name;

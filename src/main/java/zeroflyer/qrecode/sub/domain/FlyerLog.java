@@ -6,33 +6,30 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Log {
+public class FlyerLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idx;
 
     private String memberId;
 
-    private Long storeIdx;
-
     private Long flyerIdx;
-
-    private Long qrIdx;
 
     @CreationTimestamp
     private Timestamp timestamp;
 
     @Builder
-    public Log(String memberId, Long storeIdx, Long flyerIdx, Long qrIdx) {
+    public FlyerLog(String memberId, Long flyerIdx) {
         this.memberId = memberId;
-        this.storeIdx = storeIdx;
         this.flyerIdx = flyerIdx;
-        this.qrIdx = qrIdx;
     }
 }

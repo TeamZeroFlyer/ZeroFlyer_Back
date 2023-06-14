@@ -14,8 +14,9 @@ import java.util.Optional;
 public interface MemberRepository extends JpaRepository<Member, Long> {
     Optional<Member> findByIdx(Long idx);
     Optional<Member> findByMemberId(String memberId);
+
     @Transactional
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("UPDATE Member m SET m.refreshToken=:token WHERE m.idx=:idx")
     void updateRefreshToken(@Param("idx") Long idx, @Param("token") String token);
 }

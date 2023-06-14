@@ -145,7 +145,11 @@ public class JwtTokenProvider {
             throw new PrivateException(StatusCode.NOT_FOUND_AUTHORIZATION_IN_SECURITY_CONTEXT);
         }
 
-        CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
-        return Long.valueOf(customUserDetails.getName());
+        try {
+            CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
+            return Long.valueOf(customUserDetails.getName());
+        } catch (Exception e) {
+            throw new PrivateException(StatusCode.NOT_FOUND_AUTHORIZATION_IN_SECURITY_CONTEXT);
+        }
     }
 }
