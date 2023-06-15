@@ -2,6 +2,7 @@ package zeroflyer.qrecode.sub.domain;
 
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -12,6 +13,7 @@ import javax.persistence.Id;
 import java.sql.Timestamp;
 
 @Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PointLog {
     @Id

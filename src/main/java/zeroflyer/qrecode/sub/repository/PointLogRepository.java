@@ -5,8 +5,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import zeroflyer.qrecode.sub.domain.PointLog;
 
+import java.util.List;
+
 @Repository
 public interface PointLogRepository extends JpaRepository<PointLog, Long> {
     @Query(value = "SELECT SUM(p.point) FROM PointLog p WHERE p.memberId = ?1")
     Long sumByMemberId(String memberId);
+
+    List<PointLog> findAllByMemberId(String memberId);
 }

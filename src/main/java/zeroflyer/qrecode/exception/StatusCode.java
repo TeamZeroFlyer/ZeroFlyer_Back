@@ -14,6 +14,7 @@ public enum StatusCode {
     INVALID_TITLE(HttpStatus.BAD_REQUEST, "105", "제목이 존재하지 않거나 공백입니다."),
     WRONG_REQUEST(HttpStatus.BAD_REQUEST, "106", "본인의 데이터만 접근이 가능합니다."),
     EXIST_STORE(HttpStatus.BAD_REQUEST, "107", "점포는 한개만 등록 가능합니다."),
+    EXIST_FLYER(HttpStatus.BAD_REQUEST, "108", "동일한 전단지가 존재합니다."),
 
     NOT_FOUND_JWT_TOKEN(HttpStatus.NOT_FOUND, "110", "JWT 이 존재하지 않습니다. 다시 확인해주세요."),
     LOGIN_WRONG_SIGNATURE_JWT_TOKEN(HttpStatus.BAD_REQUEST, "111", "잘못된 JWT 서명입니다."),

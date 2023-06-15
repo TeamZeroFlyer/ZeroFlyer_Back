@@ -53,4 +53,14 @@ public class UserController {
     public ResponseEntity<PrivateResponseBody> deleteFlyer(@RequestParam Long idx) {
         return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK, userService.deleteFlyer(idx)), HttpStatus.OK);
     }
+
+    @GetMapping("/point")
+    public ResponseEntity<PrivateResponseBody> getPointLog() {
+        return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK, userService.getPointLog()), HttpStatus.OK);
+    }
+
+    @GetMapping("/flyer/show")
+    public ResponseEntity<PrivateResponseBody> getFlyerUrl(@RequestParam Long idx) {
+        return new ResponseEntity<>(new PrivateResponseBody(StatusCode.OK, userService.getFlyerUrl(idx)), HttpStatus.OK);
+    }
 }

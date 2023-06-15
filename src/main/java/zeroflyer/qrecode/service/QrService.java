@@ -150,7 +150,9 @@ public class QrService {
 
         List<ResponseQrListDto> result = new ArrayList<>();
         List<ResponseQrInfoDto> qrs = new ArrayList<>();
-
+        if (qrList.size() == 0) {
+            return result;
+        }
         Date target = qrList.get(0).getQrTimeStamp();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         String strTarget = format.format(target);
